@@ -8,7 +8,9 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:react-redux/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -23,8 +25,9 @@
     "sourceType": "module"
   },
   "plugins": [
-    "react-native",
     "react",
+    "react-redux",
+    "react-native",
     "@typescript-eslint"
   ],
   "rules": {
