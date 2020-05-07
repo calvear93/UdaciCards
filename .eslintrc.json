@@ -18,7 +18,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2018,
+    "ecmaVersion": 6,
     "sourceType": "module"
   },
   "plugins": [
@@ -35,7 +35,7 @@
     "block-scoped-var": "warn",
     "block-spacing": "warn",
     "brace-style": [
-      "warn",
+      "error",
       "allman",
       {
         "allowSingleLine": true
