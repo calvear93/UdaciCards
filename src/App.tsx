@@ -1,11 +1,12 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App()
 {
     return (
         <View style={ styles.container }>
-            <Text>xD this works!</Text>
+            <Text>xD this works sadsad xd wena!</Text>
         </View>
     );
 }
