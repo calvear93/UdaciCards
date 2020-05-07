@@ -1,21 +1,19 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App()
-{
-    return (
-        <View style={ styles.container }>
-            <Text>xD this works sadsad xd wena!</Text>
-        </View>
-    );
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text>This also works!</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        flex: 1,
-        justifyContent: 'center'
-    }
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
