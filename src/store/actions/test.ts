@@ -5,7 +5,7 @@ const KEY = 'TEST';
 
 // actions types definition.
 enum TestActionType {
-    RUN = 4,
+    RUN,
     RUN_SUCCESS,
     RUN_FAILED
 }

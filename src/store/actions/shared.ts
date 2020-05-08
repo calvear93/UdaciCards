@@ -45,7 +45,7 @@ export function CreateActionTypes(obj: any): any
     let types = {};
 
     for (const key in obj)
-        types[key] = `${obj[key]}:${'guid()'}`; // Symbol(obj[key]);
+        types[key] = Symbol(obj[key]);
 
     return Object.freeze(types);
 }
