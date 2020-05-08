@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { shallowEqual, useSelector } from 'react-redux';
 import { TestAction } from '../store/actions';
+import sample from '../store/actions/sample';
 
 export default function Test()
 {
@@ -11,6 +12,7 @@ export default function Test()
     );
 
     console.log(asdads);
+    console.log(sample);
 
     return (
         <View style={ styles.container }>
