@@ -10,9 +10,6 @@ import { TestDefaults } from './defaults';
  */
 function TestReducer(store = TestDefaults, action)
 {
-    if (TestAction.Key !== action.key)
-        return store;
-
     // action destructuring. (key, type or payload).
     const { type, payload } = action;
 

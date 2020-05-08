@@ -1,14 +1,17 @@
-import { CreateAction, IAction } from './shared';
+import { CreateAction, IAction, MakeUnique } from './shared';
 
 // store partition key.
 const KEY = 'SAMPLE';
 
-// actions types definition.
-enum ActionType {
-    RUN,
-    RUN_SUCCESS,
-    RUN_FAILED
-}
+// action types definition.
+const ActionType = {
+    RUN: 'RUN',
+    RUN_SUCCESS: 'RUN_SUCCESS',
+    RUN_FAILED: 'RUN_FAILED'
+};
+
+// makes action types unique.
+MakeUnique(ActionType);
 
 /**
  * Redux Action container.
@@ -42,7 +45,7 @@ const SampleAction =
      *
      * @returns {IAction} Action.
      */
-    Action: (type: ActionType, payload: any): IAction<ActionType, any> => CreateAction(SampleAction.Key, type, payload)
+    Action: (type: any, payload: any): IAction<any, any> => CreateAction(SampleAction.Key, type, payload)
 };
 
 export default Object.freeze(SampleAction);

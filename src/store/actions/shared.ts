@@ -46,8 +46,21 @@ export function CreateActionTypes(obj: any): any
 {
     let types = {};
 
-    for (const key in obj)
+    for (const key of obj)
         types[key] = `${obj[key]}:${uuid.uuid()}`;
 
     return types;
+}
+
+/**
+ * Makes object properties of an object
+ * unique, appending a uuid ot it.
+ *
+ * @export
+ * @param {any} obj dictionary with actions types for declare.
+ */
+export function MakeUnique(obj: any): any
+{
+    for (const key of Object.keys(obj))
+        obj[key] = `${key}:${uuid.uuid()}`;
 }

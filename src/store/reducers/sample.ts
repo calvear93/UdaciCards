@@ -10,9 +10,6 @@ import { SampleDefaults } from './defaults';
  */
 export default function SampleReducer(store = SampleDefaults, action)
 {
-    if (SampleAction.Key !== action.key)
-        return store;
-
     // action destructuring. (key, type or payload).
     const { type, payload } = action;
 
