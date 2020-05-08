@@ -1,9 +1,10 @@
 import { TestAction } from '../actions';
 
 const TestDefaults = {
-    test: false
+    test: 'bien'
 };
 
-export {
+export
+{
     TestDefaults
 };
