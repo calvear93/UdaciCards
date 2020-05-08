@@ -1,4 +1,4 @@
-import { createAction, createActionTypes, createActionTypesUnique } from './shared';
+import { CreateAction, CreateActionTypes } from './shared';
 
 // Store partition key.
 const KEY = 'TEST';
@@ -23,26 +23,10 @@ const TestAction =
      *
      * @memberof TestAction
      */
-    Types: createActionTypesUnique({
+    Types: CreateActionTypes({
         FETCH: 'FETCH',
         FETCH_SUCCESS: 'FETCH_SUCCESS',
         FETCH_ERROR: 'FETCH_ERROR'
-    }),
-
-    /**
-     * Storage type for persist data.
-     *
-     * @memberof TestAction
-     */
-    StorageType: 'localStorage',
-
-    /**
-     * Keys for persisted data.
-     *
-     * @memberof TestAction
-     */
-    StorageKeys: createActionTypes(KEY, {
-        DATA: 'DATA'
     }),
 
     /**
@@ -53,7 +37,7 @@ const TestAction =
      * @memberof MasterDataAction
      * @returns {func} Action.
      */
-    Action: (type, payload) => createAction(TestAction.Key, type, payload)
+    Action: (type, payload) => CreateAction(TestAction.Key, type, payload)
 };
 
 export default Object.freeze(TestAction);
