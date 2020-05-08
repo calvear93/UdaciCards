@@ -1,3 +1,5 @@
+import uuid from 'short-uuid';
+
 /**
  * Redux Action definition.
  *
@@ -7,9 +9,9 @@
  */
 export interface IAction<T, P>
 {
-    key: string,
-    type: T;
-    payload: P;
+    readonly key: string,
+    readonly type: T;
+    readonly payload: P;
 }
 
 /**
@@ -45,7 +47,7 @@ export function CreateActionTypes(obj: any): any
     let types = {};
 
     for (const key in obj)
-        types[key] = Symbol(obj[key]);
+        types[key] = `${obj[key]}:${uuid.uuid()}`;
 
-    return Object.freeze(types);
+    return types;
 }

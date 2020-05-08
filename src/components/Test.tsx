@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { shallowEqual, useSelector } from 'react-redux';
+import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { TestAction } from '../store/actions';
 import sample from '../store/actions/sample';
 
 export default function Test()
 {
+    const dispatch = useDispatch();
     const asdads = useSelector(
         store => store[TestAction.Key],
         shallowEqual
     );
 
-    console.log(asdads);
-    console.log(TestAction);
-    console.log(sample);
-    console.log(TestAction.Types.RUN === sample.Types.RUN);
+    useEffect(() =>
+    {
+        dispatch(sample.Action(sample.Types.RUN, {}));
+    });
+
+    // console.log(asdads);
+    // console.log(TestAction);
+    console.log(sample.Types.RUN);
+    // console.log(TestAction.Types.RUN === sample.Types.RUN);
 
     return (
         <View style={ styles.container }>

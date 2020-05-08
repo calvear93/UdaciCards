@@ -1,5 +1,5 @@
-import { TestAction } from '../actions';
-import { TestDefaults } from './defaults';
+import { SampleAction } from '../actions';
+import { SampleDefaults } from './defaults';
 
 /**
  * Redux Actions Reducer.
@@ -8,9 +8,9 @@ import { TestDefaults } from './defaults';
  * @param {any} action action dispatched.
  * @returns {any} new store partition.
  */
-function TestReducer(store = TestDefaults, action)
+export default function SampleReducer(store = SampleDefaults, action)
 {
-    if (TestAction.Key !== action.key)
+    if (SampleAction.Key !== action.key)
         return store;
 
     // action destructuring. (key, type or payload).
@@ -18,19 +18,19 @@ function TestReducer(store = TestDefaults, action)
 
     switch (type)
     {
-        case TestAction.Types.RUN:
+        case SampleAction.Types.RUN:
             return {
                 ...store,
                 loading: true
             };
 
-        case TestAction.Types.RUN_SUCCESS:
+        case SampleAction.Types.RUN_SUCCESS:
             return {
                 ...store,
                 loading: false
             };
 
-        case TestAction.Types.RUN_FAILED:
+        case SampleAction.Types.RUN_FAILED:
             return {
                 ...store,
                 loading: false
@@ -42,5 +42,3 @@ function TestReducer(store = TestDefaults, action)
             return store;
     }
 }
-
-export default TestReducer;

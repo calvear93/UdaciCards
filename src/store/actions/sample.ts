@@ -1,4 +1,4 @@
-import { IAction, CreateAction } from './shared';
+import { CreateAction, IAction } from './shared';
 
 // store partition key.
 const KEY = 'SAMPLE';
