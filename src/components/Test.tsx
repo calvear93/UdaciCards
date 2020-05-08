@@ -12,7 +12,9 @@ export default function Test()
     );
 
     console.log(asdads);
+    console.log(TestAction);
     console.log(sample);
+    console.log(TestAction.Types.RUN === sample.Types.RUN);
 
     return (
         <View style={ styles.container }>

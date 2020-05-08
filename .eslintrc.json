@@ -158,7 +158,8 @@
     "no-throw-literal": "error",
     "no-trailing-spaces": "warn",
     "no-unneeded-ternary": "warn",
-    "no-unused-vars": [
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
       "warn",
       {
         "args": "after-used",

@@ -1,7 +1,14 @@
-import { CreateAction, CreateActionTypes } from './shared';
+import { IAction, CreateAction } from './shared';
 
-// Store partition key.
+// store partition key.
 const KEY = 'TEST';
+
+// actions types definition.
+enum TestActionType {
+    RUN = 4,
+    RUN_SUCCESS,
+    RUN_FAILED
+}
 
 /**
  * Redux Action container.
@@ -23,21 +30,19 @@ const TestAction =
      *
      * @memberof TestAction
      */
-    Types: CreateActionTypes({
-        FETCH: 'FETCH',
-        FETCH_SUCCESS: 'FETCH_SUCCESS',
-        FETCH_ERROR: 'FETCH_ERROR'
-    }),
+    Types: TestActionType,
 
     /**
      * Returns the action.
      *
-     * @param {Symbol} type Action type.
-     * @param {any} payload Data involved in the action.
-     * @memberof MasterDataAction
-     * @returns {func} Action.
+     * @param {string} type action type.
+     * @param {any} payload data involved in the action.
+     *
+     * @memberof TestAction
+     *
+     * @returns {IAction} Action.
      */
-    Action: (type, payload) => CreateAction(TestAction.Key, type, payload)
+    Action: (type: TestActionType, payload: any): IAction<TestActionType, any> => CreateAction(TestAction.Key, type, payload)
 };
 
 export default Object.freeze(TestAction);

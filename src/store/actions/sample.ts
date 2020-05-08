@@ -1,7 +1,14 @@
-import { IAction, CreateAction, CreateActionTypes } from './shared';
+import { IAction, CreateAction } from './shared';
 
-// Store partition key.
+// store partition key.
 const KEY = 'SAMPLE';
+
+// actions types definition.
+enum ActionType {
+    RUN,
+    RUN_SUCCESS,
+    RUN_FAILED
+}
 
 /**
  * Redux Action container.
@@ -23,11 +30,7 @@ const SampleAction =
      *
      * @memberof SampleAction
      */
-    Types: CreateActionTypes({
-        FETCH: 'FETCH',
-        FETCH_SUCCESS: 'FETCH_SUCCESS',
-        FETCH_ERROR: 'FETCH_ERROR'
-    }),
+    Types: ActionType,
 
     /**
      * Returns the action.
@@ -39,7 +42,7 @@ const SampleAction =
      *
      * @returns {IAction} Action.
      */
-    Action: (type: string, payload: any): IAction => CreateAction(SampleAction.Key, type, payload)
+    Action: (type: ActionType, payload: any): IAction<ActionType, any> => CreateAction(SampleAction.Key, type, payload)
 };
 
 export default Object.freeze(SampleAction);

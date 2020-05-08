@@ -1,5 +1,3 @@
-// import { v1 as guid } from 'react-native-uuid';
-
 /**
  * Redux Action definition.
  *
@@ -7,11 +5,11 @@
  * @interface IAction
  * @template T
  */
-export interface IAction
+export interface IAction<T, P>
 {
     key: string,
-    type: string;
-    payload: any;
+    type: T;
+    payload: P;
 }
 
 /**
@@ -19,12 +17,12 @@ export interface IAction
  *
  * @export
  * @param {string} key action store pointer.
- * @param {string} type action Type.
- * @param {any} payload action args.
+ * @param {T} type action Type.
+ * @param {P} payload action args.
  *
  * @returns {IAction} action.
  */
-export function CreateAction(key: string, type: string, payload: any): IAction
+export function CreateAction<T, P>(key: string, type: T, payload: P): IAction<T, P>
 {
     return {
         key,
