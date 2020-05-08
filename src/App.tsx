@@ -5,7 +5,7 @@ export default function App()
 {
     return (
         <View style={ styles.container }>
-            <Text>This also works and works and works so!</Text>
+            <Text>sdfsdf!</Text>
         </View>
     );
 }
