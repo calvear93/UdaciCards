@@ -14,8 +14,7 @@ export default function Test()
 
     useEffect(() =>
     {
-        dispatch(DeckAction.Action(DeckAction.Type.ADD_DECK, { id: uuid.uuid(), title: 'asdasd', description: 'asdasda' }));
-        console.log('object');
+        // dispatch(DeckAction.Action(DeckAction.Type.ADD_DECK, { id: uuid.uuid(), title: 'asdasd', description: 'asdasda' }));
     }, [ ]);
 
     return (

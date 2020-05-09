@@ -1,5 +1,5 @@
+import { AnyAction } from 'redux';
 import { DeckAction } from '../actions';
-import { IAction } from '../actions/types';
 import { DeckDefaults } from './defaults';
 
 /**
@@ -10,7 +10,7 @@ import { DeckDefaults } from './defaults';
  *
  * @returns {any} new store partition.
  */
-export default function DeckReducer(store: any = DeckDefaults, action: IAction<any>) : any
+export default function DeckReducer(store: any = DeckDefaults, action: AnyAction ) : any
 {
     // action destructuring. (key, type or payload).
     const { type, payload } = action;

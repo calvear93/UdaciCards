@@ -1,5 +1,5 @@
+import { AnyAction } from 'redux';
 import { SampleAction } from '../actions';
-import { IAction } from '../actions/types';
 import { SampleDefaults } from './defaults';
 
 /**
@@ -10,7 +10,7 @@ import { SampleDefaults } from './defaults';
  *
  * @returns {any} new store partition.
  */
-export default function SampleReducer(store: any = SampleDefaults, action: IAction<any>) : any
+export default function SampleReducer(store: any = SampleDefaults, action: AnyAction) : any
 {
     // action destructuring. (key, type or payload).
     const { type, payload } = action;
