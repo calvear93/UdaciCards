@@ -6,7 +6,7 @@ import { DeckDefaults } from './defaults';
  * Redux Actions Reducer.
  *
  * @param {any} store current store partition state.
- * @param {IAction<any>} action action dispatched.
+ * @param {AnyAction} action action dispatched.
  *
  * @returns {any} new store partition.
  */
