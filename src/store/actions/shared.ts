@@ -1,32 +1,5 @@
 import uuid from 'short-uuid';
-
-/**
- * Redux Action definition.
- *
- * @export
- * @interface IAction
- * @template T
- */
-export interface IAction<T, P>
-{
-    readonly key: string;
-    readonly type: T;
-    readonly payload: P;
-}
-
-/**
- * Redux Action definition.
- *
- * @export
- * @interface IActionVault
- * @template T
- */
-export interface IActionVault<T, P>
-{
-    readonly Key: string;
-    readonly Types: T;
-    readonly Action: (type: T, payload: P) => IAction<T, P>;
-}
+import { IAction, IActionVault } from './types';
 
 /**
  * Creates a new Redux Action.
@@ -38,7 +11,7 @@ export interface IActionVault<T, P>
  *
  * @returns {IAction} action.
  */
-export function CreateAction<T, P>(key: string, type: T, payload: P): IAction<T, P>
+export function CreateAction<P>(key: string, type: string, payload: P): IAction<P>
 {
     return {
         key,
@@ -94,14 +67,14 @@ export class ActionVault<T, P> implements IActionVault<T, P>
      * Creates an instance of ActionVault.
      *
      * @param {string} key action store partition key.
-     * @param {T} types action types.
+     * @param {T} type action types.
      *
      * @memberof ActionVault
      */
-    constructor(key: string, types: T)
+    constructor(key: string, type: T)
     {
         this.Key = key;
-        this.Types = MakeUnique(types);
+        this.Type = MakeUnique(type);
     }
 
     /**
@@ -116,7 +89,7 @@ export class ActionVault<T, P> implements IActionVault<T, P>
      *
      * @memberof ActionVault
      */
-    Types: T;
+    Type: T;
 
     /**
      * Returns the action.
@@ -128,5 +101,5 @@ export class ActionVault<T, P> implements IActionVault<T, P>
      *
      * @returns {IAction} action function.
      */
-    Action: (type: T, payload: P) => IAction<T, P> = (type: T, payload: P): IAction<T, P> => CreateAction(this.Key, type, payload);
+    Action: (type: string, payload: P) => IAction<P> = (type: string, payload: P): IAction<P> => CreateAction(this.Key, type, payload);
 }

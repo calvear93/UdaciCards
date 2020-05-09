@@ -1,5 +1,6 @@
 import SampleAction from './sample';
 
-export {
+export
+{
     SampleAction
 };

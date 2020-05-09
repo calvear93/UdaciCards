@@ -13,12 +13,12 @@ export default function Test()
 
     useEffect(() =>
     {
-        // dispatch(sample.Action(sample.Types.RUN, {}));
+        dispatch(sample.Action(sample.Type.RUN, {}));
     });
 
     // console.log(asdads);
     // console.log(TestAction);
-    console.log(sample.Types.RUN);
+    console.log(sample.Type.RUN);
     // console.log(TestAction.Types.RUN === sample.Types.RUN);
 
     return (

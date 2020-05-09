@@ -9,7 +9,7 @@ import { race, take, delay } from 'redux-saga/effects';
  *
  * @returns {Array<any>} actions results.
  */
-function* waitForEvery(types: Array<any>, times: number, timeout: number = 0): IterableIterator<any>
+export function* waitForEvery(types: Array<any>, times: number, timeout: number = 0): IterableIterator<any>
 {
     // stores every result of action intercepted.
     let results: Array<any> = [];
@@ -29,7 +29,3 @@ function* waitForEvery(types: Array<any>, times: number, timeout: number = 0): I
 
     return results;
 }
-
-export {
-    waitForEvery
-};

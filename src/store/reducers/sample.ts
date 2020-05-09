@@ -15,19 +15,19 @@ export default function SampleReducer(store = SampleDefaults, action)
 
     switch (type)
     {
-        case SampleAction.Types.RUN:
+        case SampleAction.Type.RUN:
             return {
                 ...store,
                 loading: true
             };
 
-        case SampleAction.Types.RUN_SUCCESS:
+        case SampleAction.Type.RUN_SUCCESS:
             return {
                 ...store,
                 loading: false
             };
 
-        case SampleAction.Types.RUN_FAILED:
+        case SampleAction.Type.RUN_FAILED:
             return {
                 ...store,
                 loading: false
