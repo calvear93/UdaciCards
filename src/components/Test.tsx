@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { DeckAction } from '../store/actions';
 import uuid from 'short-uuid';
+import { Container, Header, Content, List, ListItem, Text } from 'native-base';
 
 export default function Test()
 {
@@ -18,9 +19,28 @@ export default function Test()
     }, [ ]);
 
     return (
-        <View style={ styles.container }>
-            <Text>sdfsdf asdasd as asd asd!</Text>
-        </View>
+        <Container>
+            <Header />
+            <Content>
+                <List>
+                    <ListItem itemDivider>
+                        <Text>A</Text>
+                    </ListItem>
+                    <ListItem>
+                        <Text>Aaron Bennet</Text>
+                    </ListItem>
+                    <ListItem>
+                        <Text>Ali Connors</Text>
+                    </ListItem>
+                    <ListItem itemDivider>
+                        <Text>B</Text>
+                    </ListItem>
+                    <ListItem>
+                        <Text>Bradley Horowitz</Text>
+                    </ListItem>
+                </List>
+            </Content>
+        </Container>
     );
 }
 

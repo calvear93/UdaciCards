@@ -3,11 +3,17 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './store/store';
 import Main from './views/Main';
 import { PersistGate } from 'redux-persist/integration/react';
+import Loader from './components/Loader';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import Loader from './components/Loader';
 
-export default function App()
+/**
+ * Root component.
+ *
+ * @export
+ * @returns {ReactElement} root app component.
+ */
+export default function App() : React.ReactElement
 {
     const [ isReady, setIsReady ] = useState(false);
 
@@ -28,13 +34,16 @@ export default function App()
     if (!isReady)
     {
         return (
-            <Loader message={ 'Loading' } />
+            <Loader message={ 'Loading Resources' } />
         );
     }
 
     return (
         <Provider store={ store }>
-            <PersistGate persistor={ persistor }>
+            <PersistGate
+                persistor={ persistor }
+                loading={ <Loader message={ 'Loading Data' } /> }
+            >
                 <Main />
             </PersistGate>
         </Provider>
