@@ -16,11 +16,11 @@ export default function Test()
     useEffect(() =>
     {
         // dispatch(DeckAction.Action(DeckAction.Type.ADD_DECK, { id: uuid.uuid(), title: 'asdasd', description: 'asdasda' }));
+        dispatch(DeckAction.Action(DeckAction.Type.CLEAR));
     }, [ ]);
 
     return (
         <Container>
-            <Header />
             <Content>
                 <List>
                     <ListItem itemDivider>

@@ -9,6 +9,7 @@ interface DeckActionType {
     readonly REMOVE_DECK: string;
     readonly ADD_CARD: string;
     readonly REMOVE_CARD: string;
+    readonly CLEAR: string;
 }
 
 /**
@@ -23,6 +24,7 @@ export default new ActionVault<DeckActionType, any>(
         ADD_DECK: 'ADD_DECK',
         REMOVE_DECK: 'REMOVE_DECK',
         ADD_CARD: 'ADD_CARD',
-        REMOVE_CARD: 'REMOVE_CARD'
+        REMOVE_CARD: 'REMOVE_CARD',
+        CLEAR: 'CLEAR'
     }
 );

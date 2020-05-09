@@ -5,6 +5,8 @@ import Loader from './components/Loader';
 import { InitAction } from './store/actions';
 import ErrorView from './views/Error';
 import MainView from './views/Main';
+import CardsView from './views/Cards';
+import { createStackNavigator } from '@react-navigation/stack';
 
 /**
  * Router component.
@@ -40,8 +42,21 @@ export default function Router() : React.ReactElement
         );
     }
 
+    const Stack = createStackNavigator();
+
     return ready ? (
-        <MainView />
+        <Stack.Navigator>
+            <Stack.Screen
+                name='Main'
+                component={ MainView }
+                options={ { title: 'Decks' } }
+            />
+            <Stack.Screen
+                name='Cards'
+                component={ CardsView }
+                options={ { title: 'Cards' } }
+            />
+        </Stack.Navigator>
     ) : (
         <ErrorView />
     );

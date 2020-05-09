@@ -48,6 +48,9 @@ export default function DeckReducer(store: any = DeckDefaults, action: AnyAction
         case DeckAction.Type.REMOVE_CARD:
             return store;
 
+        case DeckAction.Type.CLEAR:
+            return {};
+
         // default doesn't changes the store,
         // so, components doesn't re-renders.
         default:
