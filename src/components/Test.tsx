@@ -1,29 +1,26 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
-import sample from '../store/actions/sample';
+import { DeckAction } from '../store/actions';
+import uuid from 'short-uuid';
 
 export default function Test()
 {
     const dispatch = useDispatch();
-    const asdads = useSelector(
-        store => store[sample.Key],
+    const store = useSelector(
+        store => store[DeckAction.Key],
         shallowEqual
     );
 
     useEffect(() =>
     {
-        dispatch(sample.Action(sample.Type.RUN, {}));
-    });
-
-    // console.log(asdads);
-    // console.log(TestAction);
-    console.log(sample.Type.RUN);
-    // console.log(TestAction.Types.RUN === sample.Types.RUN);
+        dispatch(DeckAction.Action(DeckAction.Type.ADD_DECK, { id: uuid.uuid(), title: 'asdasd', description: 'asdasda' }));
+        console.log('object');
+    }, [ ]);
 
     return (
         <View style={ styles.container }>
-            <Text>sdfsdf asdasd as asd!</Text>
+            <Text>sdfsdf asdasd as asd asd!</Text>
         </View>
     );
 }

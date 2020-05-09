@@ -31,6 +31,14 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "args": "after-used",
+        "caughtErrors": "all",
+        "vars": "local"
+      }
+    ],
     "array-bracket-spacing": [
       "warn",
       "always"
@@ -159,14 +167,6 @@
     "no-trailing-spaces": "warn",
     "no-unneeded-ternary": "warn",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "args": "after-used",
-        "caughtErrors": "all",
-        "vars": "local"
-      }
-    ],
     "object-curly-spacing": [
       "warn",
       "always"
@@ -208,6 +208,7 @@
       "warn",
       "as-needed"
     ],
+    "react-hooks/exhaustive-deps": "off",
     "react-redux/no-unused-prop-types": "warn",
     "react-redux/prefer-separate-component-file": "off",
     "react/boolean-prop-naming": [
