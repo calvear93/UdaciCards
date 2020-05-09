@@ -1,24 +1,22 @@
-import { shallowEqual, useSelector, useDispatch } from 'react-redux';
-import { Ionicons } from '@expo/vector-icons';
-import * as Font from 'expo-font';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import Loader from './components/Loader';
-import MainView from './views/Main';
 import { InitAction } from './store/actions';
+import ErrorView from './views/Error';
+import MainView from './views/Main';
 
 /**
- * Root component.
+ * Router component.
+ * Initializes routing and settings.
  *
  * @export
  * @returns {ReactElement} root app component.
  */
-export default function App() : React.ReactElement
+export default function Router() : React.ReactElement
 {
-    const [ isReady, setIsReady ] = useState(false);
-
     const dispatch = useDispatch();
 
-    const store = useSelector(
+    const { ready, loading } = useSelector(
         store => store[InitAction.Key],
         shallowEqual
     );
@@ -26,27 +24,18 @@ export default function App() : React.ReactElement
     useEffect(() =>
     {
         dispatch(InitAction.Action(InitAction.Type.RUN));
-
-        (async () =>
-        {
-            await Font.loadAsync({
-                Roboto: require('native-base/Fonts/Roboto.ttf'),
-                Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-                ...Ionicons.font
-            });
-
-            setIsReady(true);
-        })();
     }, []);
 
-    if (!isReady)
+    if (loading)
     {
         return (
             <Loader message={ 'Loading Resources' } />
         );
     }
 
-    return (
+    return ready ? (
         <MainView />
+    ) : (
+        <ErrorView />
     );
 }
