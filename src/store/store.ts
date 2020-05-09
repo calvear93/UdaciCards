@@ -1,15 +1,9 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import { applyMiddleware, createStore } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
+import config from './config';
 import middleware from './middleware';
 import reducers from './reducers';
-
-// persistence config.
-const config = {
-    key: 'root',
-    storage: AsyncStorage
-};
 
 // creates Saga middleware factory.
 const saga = createSagaMiddleware();
@@ -21,8 +15,4 @@ const persistor = persistStore(store);
 // runs Saga root middleware.
 saga.run(middleware);
 
-export
-{
-    store,
-    persistor
-};
+export { store, persistor };
