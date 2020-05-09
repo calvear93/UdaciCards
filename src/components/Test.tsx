@@ -23,7 +23,7 @@ export default function Test()
 
     return (
         <View style={ styles.container }>
-            <Text>sdfsdf!</Text>
+            <Text>sdfsdf asdasd as asd!</Text>
         </View>
     );
 }
