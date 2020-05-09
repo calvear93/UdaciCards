@@ -1,22 +1,42 @@
-import { Button, Container, Content, Text, List, ListItem } from 'native-base';
+import { Button, Container, Content, Text, List, ListItem, Icon } from 'native-base';
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { DeckAction } from '../store/actions';
 
 export default function MainView({ navigation }) : React.ReactElement
 {
+    const dispatch = useDispatch();
+
+    function removeAllDecks()
+    {
+        dispatch(DeckAction.Action(DeckAction.Type.CLEAR));
+    }
+
     return (
         <Container style={ styles.container }>
             <Content>
-                <Content style={ styles.toolbar }>
+                <View style={ styles.toolbar }>
+                    <Button
+                        rounded
+                        danger
+                        style={ styles.button }
+                        onPress={ removeAllDecks }
+                    >
+                        <Icon name='trash' />
+                        <Text>Remove All Decks</Text>
+                    </Button>
                     <Button
                         rounded
                         success
-                        style={ styles.add }
+                        style={ styles.button }
                         onPress={ () => navigation.navigate('AddDeck') }
                     >
+                        <Icon name='add' />
                         <Text>Add Deck</Text>
                     </Button>
-                </Content>
+                </View>
                 <List>
                     <ListItem itemDivider>
                         <Text>A</Text>
@@ -41,13 +61,15 @@ export default function MainView({ navigation }) : React.ReactElement
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        flexDirection: 'row'
     },
     toolbar: {
-        padding: 16
+        flexDirection: 'row',
+        padding: 16,
+        justifyContent: 'flex-end'
     },
-    add: {
-        alignSelf: 'flex-end'
+    button: {
+        marginRight: 8
     }
 });
