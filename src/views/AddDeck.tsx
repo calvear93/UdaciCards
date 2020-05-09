@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
 
 export default function AddDeckView() : React.ReactElement
 {
@@ -7,14 +7,13 @@ export default function AddDeckView() : React.ReactElement
         <Container>
             <Content>
                 <Form>
-                    <Item fixedLabel>
-                        <Label>Username</Label>
+                    <Item inlineLabel>
+                        <Label>Deck name</Label>
                         <Input />
                     </Item>
-                    <Item fixedLabel last>
-                        <Label>Password</Label>
-                        <Input />
-                    </Item>
+                    <Button full>
+                        <Text>ADD DECK</Text>
+                    </Button>
                 </Form>
             </Content>
         </Container>

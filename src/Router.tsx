@@ -56,7 +56,7 @@ export default function Router() : React.ReactElement
             <Stack.Screen
                 name='AddDeck'
                 component={ AddDeckView }
-                options={ { title: 'AddDeck' } }
+                options={ { title: 'Add Deck' } }
             />
             <Stack.Screen
                 name='Cards'
