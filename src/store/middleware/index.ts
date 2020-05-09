@@ -1,5 +1,6 @@
 import { all } from 'redux-saga/effects';
 import logger from './logger';
+import init from './init';
 
 /**
  * Combine every sagas in parallel tasks.
@@ -9,6 +10,7 @@ import logger from './logger';
 export default function* combineMiddleware()
 {
     yield all([
-        logger()
+        logger(),
+        init()
     ]);
 }

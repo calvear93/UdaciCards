@@ -31,11 +31,16 @@ export default function InitReducer(store: any = InitDefaults, action: AnyAction
             };
 
         case InitAction.Type.FAILED:
+        {
+            const { error } = payload;
+
             return {
                 ...store,
                 ready: false,
-                loading: false
+                loading: false,
+                error
             };
+        }
 
         // default doesn't changes the store,
         // so, components doesn't re-renders.

@@ -5,19 +5,18 @@ function* init()
 {
     try
     {
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>< BIEN');
         yield put(InitAction.Action(InitAction.Type.SUCCESS));
-        console.log('BIEN');
     }
     catch (e)
     {
-        // // failed action.
-        // yield put(MasterDataAction.Action(
-        //     MasterDataAction.Types.FETCH_ERROR,
-        //     {
-        //         error: e,
-        //         message: 'La solicitud no se pudo completar'
-        //     }
-        // ));
+        yield put(InitAction.Action(
+            InitAction.Type.FAILED,
+            {
+                error: e,
+                message: 'La solicitud no se pudo completar'
+            }
+        ));
     }
 }
 
