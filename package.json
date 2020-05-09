@@ -10,6 +10,7 @@
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.10.0",
     "expo": "~37.0.3",
     "expo-updates": "~0.1.0",
     "react": "~16.9.0",
