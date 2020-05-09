@@ -6,6 +6,7 @@ import { InitAction } from './store/actions';
 import ErrorView from './views/Error';
 import MainView from './views/Main';
 import CardsView from './views/Cards';
+import AddDeckView from './views/AddDeck';
 import { createStackNavigator } from '@react-navigation/stack';
 
 /**
@@ -42,6 +43,7 @@ export default function Router() : React.ReactElement
         );
     }
 
+    // creates stack handler.
     const Stack = createStackNavigator();
 
     return ready ? (
@@ -50,6 +52,11 @@ export default function Router() : React.ReactElement
                 name='Main'
                 component={ MainView }
                 options={ { title: 'Decks' } }
+            />
+            <Stack.Screen
+                name='AddDeck'
+                component={ AddDeckView }
+                options={ { title: 'AddDeck' } }
             />
             <Stack.Screen
                 name='Cards'
