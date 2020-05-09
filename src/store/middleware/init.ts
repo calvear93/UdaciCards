@@ -1,7 +1,7 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { InitAction } from '../actions';
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
+import { all, put, takeLatest } from 'redux-saga/effects';
+import { InitAction } from '../actions';
 
 /**
  * Initializes some base App data.

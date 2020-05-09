@@ -1,4 +1,5 @@
 import React from 'react';
+import { Root } from 'native-base';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
@@ -16,7 +17,9 @@ export default function App() : React.ReactElement
     return (
         <Provider store={ store }>
             <PersistGate persistor={ persistor }>
-                <Router />
+                <Root>
+                    <Router />
+                </Root>
             </PersistGate>
         </Provider>
     );

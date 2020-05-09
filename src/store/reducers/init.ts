@@ -18,6 +18,8 @@ export default function InitReducer(store: any = InitDefaults, action: AnyAction
     switch (type)
     {
         case InitAction.Type.RUN:
+            delete store.error;
+
             return {
                 ...store,
                 loading: true
