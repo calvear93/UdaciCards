@@ -11,7 +11,7 @@ import { IAction, IActionVault } from './types';
  *
  * @returns {IAction} action.
  */
-export function CreateAction<P>(key: string, type: string, payload: P): IAction<P>
+export function CreateAction<P>(key: string, type: string, payload?: P): IAction<P>
 {
     return {
         key,
@@ -101,5 +101,5 @@ export class ActionVault<T, P> implements IActionVault<T, P>
      *
      * @returns {IAction} action function.
      */
-    Action: (type: string, payload: P) => IAction<P> = (type: string, payload: P): IAction<P> => CreateAction(this.Key, type, payload);
+    Action: (type: string, payload?: P) => IAction<P> = (type: string, payload?: P): IAction<P> => CreateAction(this.Key, type, payload);
 }

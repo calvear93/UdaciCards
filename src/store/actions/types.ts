@@ -9,7 +9,7 @@ export interface IAction<P>
 {
     readonly key: string;
     readonly type: string;
-    readonly payload: P;
+    readonly payload: P | undefined;
 }
 
 /**
@@ -24,5 +24,5 @@ export interface IActionVault<T, P>
 {
     readonly Key: string;
     readonly Type: T;
-    readonly Action: (type: string, payload: P) => IAction<P>;
+    readonly Action: (type: string, payload?: P) => IAction<P>;
 }

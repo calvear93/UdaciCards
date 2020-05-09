@@ -6,6 +6,7 @@ import Router from './Router';
 
 /**
  * Root component.
+ * Injects store and persistence providers.
  *
  * @export
  * @returns {ReactElement} root app component.
