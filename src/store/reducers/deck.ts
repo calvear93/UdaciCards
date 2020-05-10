@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import { DeckAction } from '../actions';
 import { DeckDefaults } from './defaults';
+import deck from '../actions/deck';
 
 /**
  * Redux Actions Reducer.
@@ -18,27 +19,58 @@ export default function DeckReducer(store: any = DeckDefaults, action: AnyAction
     switch (type)
     {
         case DeckAction.Type.ADD_DECK:
-        {
-            const { id, title, description } = payload;
+            delete store.error;
 
             return {
                 ...store,
-                [id]: {
-                    title,
-                    description,
-                    questions: []
+                loading: true
+            };
+
+        case DeckAction.Type.ADD_DECK_COMMIT:
+        {
+            const { id, title } = payload;
+            const { decks = {} } = store;
+
+            return {
+                ...store,
+                loading: false,
+                count: store.count + 1,
+                decks: {
+                    ...decks,
+                    [id]: {
+                        id,
+                        title,
+                        count: 0,
+                        questions: {}
+                    }
                 }
+            };
+        }
+
+        case DeckAction.Type.ADD_DECK_FAILED:
+        {
+            const { error } = payload;
+
+            return {
+                ...store,
+                loading: false,
+                error
             };
         }
 
         case DeckAction.Type.REMOVE_DECK:
         {
             const { id } = payload;
+            const { decks } = store;
 
-            delete store[id];
+            delete decks[id];
 
             return {
-                ...store
+                ...store,
+                count: store.count - 1,
+                decks: {
+                    ...decks
+                }
             };
         }
 
@@ -49,7 +81,9 @@ export default function DeckReducer(store: any = DeckDefaults, action: AnyAction
             return store;
 
         case DeckAction.Type.CLEAR:
-            return {};
+            return {
+                count: 0
+            };
 
         // default doesn't changes the store,
         // so, components doesn't re-renders.

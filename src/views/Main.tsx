@@ -1,17 +1,53 @@
-import { Button, Container, Content, Text, List, ListItem, Icon } from 'native-base';
+import { Button, Container, Content, Text, List, ListItem, Icon, Card, CardItem, Body, ActionSheet } from 'native-base';
+import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { StyleSheet, View } from 'react-native';
 import { DeckAction } from '../store/actions';
 
 export default function MainView({ navigation }) : React.ReactElement
 {
     const dispatch = useDispatch();
 
+    const { decks = {} } = useSelector(
+        store => store[DeckAction.Key],
+        shallowEqual
+    );
+
     function removeAllDecks()
     {
         dispatch(DeckAction.Action(DeckAction.Type.CLEAR));
+    }
+
+    function ViewCards(id)
+    {
+        console.log(id);
+    }
+
+    function ShowOptions(id, title)
+    {
+        ActionSheet.show(
+            {
+                options: [
+                    { text: 'Delete', icon: 'trash', iconColor: '#fa213b' },
+                    { text: 'Cancel', icon: 'close', iconColor: '#25de5b' }
+                ],
+                title: `Deck "${title}" options`
+            },
+            buttonIndex =>
+            {
+                if (buttonIndex === 0)
+                    DeleteDeck(id);
+            }
+        );
+    }
+
+    function DeleteDeck(id)
+    {
+        console.log(id);
+        dispatch(DeckAction.Action(
+            DeckAction.Type.REMOVE_DECK,
+            { id }
+        ));
     }
 
     return (
@@ -38,21 +74,25 @@ export default function MainView({ navigation }) : React.ReactElement
                     </Button>
                 </View>
                 <List>
-                    <ListItem itemDivider>
-                        <Text>A</Text>
-                    </ListItem>
-                    <ListItem>
-                        <Text>Aaron Bennet</Text>
-                    </ListItem>
-                    <ListItem>
-                        <Text>Ali Connors</Text>
-                    </ListItem>
-                    <ListItem itemDivider>
-                        <Text>B</Text>
-                    </ListItem>
-                    <ListItem>
-                        <Text>Bradley Horowitz</Text>
-                    </ListItem>
+                    {
+                        Object.values(decks)
+                            .map((d: any) => d && (
+                                <ListItem
+                                    key={ d.id }
+                                    onPress={ () => ViewCards(d.id) }
+                                    onLongPress={ () => ShowOptions(d.id, d.title) }
+                                >
+                                    <Card style={ styles.deck }>
+                                        <CardItem header bordered>
+                                            <Text style={ styles.title }>{d.title}</Text>
+                                        </CardItem>
+                                        <CardItem footer bordered>
+                                            <Text>Count: {d.count}</Text>
+                                        </CardItem>
+                                    </Card>
+                                </ListItem>
+                            ))
+                    }
                 </List>
             </Content>
         </Container>
@@ -71,5 +111,13 @@ const styles = StyleSheet.create({
     },
     button: {
         marginRight: 8
+    },
+    deck: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    title: {
+        fontSize: 20,
+        color: 'green'
     }
 });

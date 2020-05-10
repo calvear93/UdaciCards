@@ -61,19 +61,21 @@ export function MakeUnique(obj: any): any
  *
  * @export ActionVault
  */
-export class ActionVault<T, P> implements IActionVault<T, P>
+export class ActionVault<T, P, S = undefined> implements IActionVault<T, P, S>
 {
     /**
      * Creates an instance of ActionVault.
      *
      * @param {string} key action store partition key.
      * @param {T} type action types.
+     * @param {S} state action states.
      *
      * @memberof ActionVault
      */
-    constructor(key: string, type: T)
+    constructor(key: string, type: T, state?: S)
     {
         this.Key = key;
+        this.State = state;
         this.Type = MakeUnique(type);
     }
 
@@ -90,6 +92,13 @@ export class ActionVault<T, P> implements IActionVault<T, P>
      * @memberof ActionVault
      */
     Type: T;
+
+    /**
+     * Action states.
+     *
+     * @memberof ActionVault
+     */
+    State: S | undefined;
 
     /**
      * Returns the action.

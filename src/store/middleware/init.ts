@@ -38,7 +38,5 @@ function* init()
  */
 export default function* run()
 {
-    yield all([
-        takeLatest(InitAction.Type.RUN, init)
-    ]);
+    yield takeLatest(InitAction.Type.RUN, init);
 }
