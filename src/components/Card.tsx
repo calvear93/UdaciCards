@@ -1,11 +1,34 @@
-import { Body, Card as NativeCard, CardItem, Icon, Left, Text, Thumbnail } from 'native-base';
-import React from 'react';
+import { Body, Button, Card as NativeCard, CardItem, Left, Text, Toast } from 'native-base';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 
-export default function Card({ question }) : React.ReactElement
+export default function Card({ question, onAnswer }) : React.ReactElement
 {
+    const [ answerVisible, setAnswerVisible ] = useState(false);
+
+    function answer(correct: boolean)
+    {
+        if (correct)
+        {
+            Toast.show({
+                text: 'Nice! keep it up!',
+                duration: 4000,
+                type: 'success'
+            });
+        }
+        else
+        {
+            Toast.show({
+                text: 'well, we all fail sometime!',
+                duration: 4000,
+                type: 'danger'
+            });
+        }
+        onAnswer && onAnswer(question.id, correct);
+    }
+
     return (
-        <NativeCard style={ { elevation: 3 } }>
+        <NativeCard style={ styles.card }>
             <CardItem>
                 <Left>
                     <Body>
@@ -14,31 +37,60 @@ export default function Card({ question }) : React.ReactElement
                 </Left>
             </CardItem>
             <CardItem cardBody style={ styles.answerContainer }>
-                <Text style={ styles.answer }>{question.answer}</Text>
+                {answerVisible ? (
+                    <Text style={ styles.answer }>{question.answer}</Text>
+                ) : (
+                    <Text style={ styles.answerHidden }>¡ANSWER HIDDEN!</Text>
+                )}
             </CardItem>
-            <CardItem>
-                <Text>{question.answer}</Text>
+            <CardItem style={ styles.buttonContainer }>
+                {!answerVisible ? (
+                    <Button info style={ styles.button } onPress={ () => setAnswerVisible(true) }>
+                        <Text>Show Answer</Text>
+                    </Button>
+                ) : (
+                    <>
+                        <Button danger style={ styles.button } onPress={ () => answer(false) }>
+                            <Text>Wrong!</Text>
+                        </Button>
+                        <Button success style={ styles.button } onPress={ () => answer(true) }>
+                            <Text>Correct!</Text>
+                        </Button>
+                    </>
+                )}
             </CardItem>
         </NativeCard>
     );
 }
 
 const styles = StyleSheet.create({
+    card: {
+        elevation: 10
+    },
     question: {
         fontSize: 24,
         color: 'black',
         textAlign: 'center'
     },
     answerContainer: {
+        height: 128,
         alignSelf: 'center'
     },
     answer: {
         fontSize: 20,
         color: 'green'
     },
+    answerHidden: {
+        fontSize: 20,
+        color: 'red'
+    },
+    buttonContainer: {
+        alignSelf: 'center'
+    },
     button: {
         fontSize: 16,
-        color: 'gray',
-        marginTop: 24
+        justifyContent: 'center',
+        marginLeft: 12,
+        marginRight: 12
     }
 });
