@@ -18,7 +18,7 @@ export default function DeckDetailView({ route: { params: { id } }, navigation }
 
     function startQuiz()
     {
-        alert('not yet');
+        navigation.navigate('Quiz', { deck });
     }
 
     return (

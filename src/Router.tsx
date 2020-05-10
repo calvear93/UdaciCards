@@ -9,6 +9,7 @@ import CardsView from './views/Cards';
 import AddDeckView from './views/AddDeck';
 import DeckDetailView from './views/DeckDetail';
 import AddCardView from './views/AddCard';
+import QuizView from './views/Quiz';
 import { createStackNavigator } from '@react-navigation/stack';
 
 /**
@@ -71,9 +72,9 @@ export default function Router() : React.ReactElement
                 options={ { title: 'Add Card' } }
             />
             <Stack.Screen
-                name='Cards'
-                component={ CardsView }
-                options={ { title: 'Cards' } }
+                name='Quiz'
+                component={ QuizView }
+                options={ { title: 'Quiz' } }
             />
         </Stack.Navigator>
     ) : (
