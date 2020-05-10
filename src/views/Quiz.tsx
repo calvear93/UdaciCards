@@ -1,12 +1,13 @@
-import { Container, DeckSwiper, View, Text } from 'native-base';
-import React, { useEffect } from 'react';
-import { shallowEqual, useSelector, useDispatch } from 'react-redux';
+import { Container, DeckSwiper, Text, View } from 'native-base';
+import React from 'react';
 import { StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from '../components/Card';
 import { QuizAction } from '../store/actions';
 
 export default function QuizView({ navigation }) : React.ReactElement
 {
+    let swiper: any;
     const dispatch = useDispatch();
 
     const quiz = useSelector(
@@ -21,6 +22,11 @@ export default function QuizView({ navigation }) : React.ReactElement
             QuizAction.Type.ANSWER,
             { id, correct }
         ));
+
+        if (correct)
+            swiper?._root.swipeLeft();
+        else
+            swiper?._root.swipeRight();
     }
 
     return (
@@ -35,6 +41,7 @@ export default function QuizView({ navigation }) : React.ReactElement
                     </>
                 ) : (
                     <DeckSwiper
+                        ref={ (c) => swiper = c }
                         dataSource={ questions }
                         renderItem={ (question: any) =>
                             (
