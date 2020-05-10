@@ -10,7 +10,7 @@ export default function AddDeckView({ navigation }) : React.ReactElement
     const [ waiting, setWaiting ] = useState(false);
     const dispatch = useDispatch();
 
-    const { loading, error } = useSelector(
+    const { loading, error, lastDeckId } = useSelector(
         store => store[DeckAction.Key],
         shallowEqual
     );
@@ -21,7 +21,7 @@ export default function AddDeckView({ navigation }) : React.ReactElement
         {
             case 1: // success
                 setWaiting(false);
-                navigation.goBack();
+                navigation.navigate('DeckDetail', { id: lastDeckId });
                 break;
 
             case -1: // error
