@@ -11,7 +11,7 @@ import deck from './deck';
 export default function* combineMiddleware()
 {
     yield all([
-        logger(),
+        // logger(),
         init(),
         deck()
     ]);

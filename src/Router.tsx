@@ -11,6 +11,7 @@ import DeckDetailView from './views/DeckDetail';
 import AddCardView from './views/AddCard';
 import QuizView from './views/Quiz';
 import { createStackNavigator } from '@react-navigation/stack';
+import ValidateNotificationPermission from './services/Permission';
 
 /**
  * Router component.
@@ -37,6 +38,8 @@ export default function Router() : React.ReactElement
     {
         if (!ready)
             dispatch(InitAction.Action(InitAction.Type.RUN));
+
+        ValidateNotificationPermission();
     }, [ ready ]);
 
     if (loading)
