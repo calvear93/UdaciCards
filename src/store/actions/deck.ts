@@ -10,6 +10,7 @@ interface DeckActionType {
     readonly ADD_DECK_FAILED: string;
     readonly REMOVE_DECK: string;
     readonly ADD_CARD: string;
+    readonly ADD_CARD_COMMIT: string;
     readonly REMOVE_CARD: string;
     readonly CLEAR: string;
 }
@@ -37,6 +38,7 @@ export default new ActionVault<DeckActionType, any, DeckStoreState>(
         ADD_DECK_FAILED: 'ADD_DECK_FAILED',
         REMOVE_DECK: 'REMOVE_DECK',
         ADD_CARD: 'ADD_CARD',
+        ADD_CARD_COMMIT: 'ADD_CARD',
         REMOVE_CARD: 'REMOVE_CARD',
         CLEAR: 'CLEAR'
     },

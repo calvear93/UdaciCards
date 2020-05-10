@@ -30,6 +30,19 @@ function* addDeck({ payload: { title } }: any)
     }
 }
 
+function* addCard({ payload }: any)
+{
+    const newCard = {
+        id: uuid.uuid(),
+        ...payload
+    };
+
+    yield put(DeckAction.Action(
+        DeckAction.Type.ADD_CARD_COMMIT,
+        newCard
+    ));
+}
+
 /**
  * Exports saga listeners.
  *
@@ -38,6 +51,7 @@ function* addDeck({ payload: { title } }: any)
 export default function* run()
 {
     yield all([
-        takeLatest(DeckAction.Type.ADD_DECK, addDeck)
+        takeLatest(DeckAction.Type.ADD_DECK, addDeck),
+        takeLatest(DeckAction.Type.ADD_CARD, addCard)
     ]);
 }

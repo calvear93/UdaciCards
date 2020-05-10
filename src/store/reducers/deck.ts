@@ -74,8 +74,31 @@ export default function DeckReducer(store: any = DeckDefaults, action: AnyAction
             };
         }
 
-        case DeckAction.Type.ADD_CARD:
-            return store;
+        case DeckAction.Type.ADD_CARD_COMMIT:
+        {
+            const { deckId, id, question, answer } = payload;
+            const { decks } = store;
+            const { [deckId]: deck } = decks;
+
+            return {
+                ...store,
+                decks: {
+                    ...decks,
+                    [deck.id]: {
+                        ...deck,
+                        count: deck.count + 1,
+                        questions: {
+                            ...deck.questions,
+                            [id]: {
+                                id,
+                                question,
+                                answer
+                            }
+                        }
+                    }
+                }
+            };
+        }
 
         case DeckAction.Type.REMOVE_CARD:
             return store;
