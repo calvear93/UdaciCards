@@ -1,8 +1,8 @@
-import { Button, Container, Form, Input, Item, Label, Text } from 'native-base';
+import { Button, Container, Form, Input, Item, Label, Text, Toast } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, shallowEqual, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { DeckAction } from '../store/actions';
-import { Toast } from 'native-base';
+import { StyleSheet } from 'react-native';
 
 export default function AddDeckView({ navigation }) : React.ReactElement
 {
@@ -55,10 +55,11 @@ export default function AddDeckView({ navigation }) : React.ReactElement
     }
 
     return (
-        <Container>
+        <Container style={ styles.container }>
             <Form>
+                <Text style={ styles.title }>Whats is the Title of your Deck?</Text>
                 <Item inlineLabel>
-                    <Label>Deck title</Label>
+                    <Label>Enter the Deck title</Label>
                     <Input onChangeText={ onChange } />
                 </Item>
                 <Button disabled={ loading } full onPress={ onSubmit }>
@@ -94,3 +95,17 @@ function showToastOnSuccess(waiting: boolean, loading: boolean, error: any)
         return 1;
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    title: {
+        fontSize: 32,
+        color: 'gray',
+        marginTop: 32,
+        marginBottom: 24,
+        textAlign: 'center'
+    }
+});

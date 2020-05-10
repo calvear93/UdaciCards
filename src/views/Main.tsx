@@ -87,7 +87,7 @@ export default function MainView({ navigation }) : React.ReactElement
                                             <Text style={ styles.title }>{d.title}</Text>
                                         </CardItem>
                                         <CardItem footer bordered>
-                                            <Text>Count: {d.count}</Text>
+                                            <Text>{d.count} Cards</Text>
                                         </CardItem>
                                     </Card>
                                 </ListItem>
