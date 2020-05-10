@@ -30,7 +30,9 @@ export default function QuizReducer(store: any = QuizDefaults, action: AnyAction
                 total: Object.keys(questions).length,
                 answered: 0,
                 correct: 0,
-                questions
+                questions: {
+                    ...questions
+                }
             };
         }
 
@@ -38,17 +40,19 @@ export default function QuizReducer(store: any = QuizDefaults, action: AnyAction
         {
             const { id, correct } = payload;
 
-            const { questions } = store;
+            let { questions } = store;
 
             delete questions[id];
 
             const answered = store.answered + 1;
+            const success = answered === store.total;
+            questions = success ? {} : questions;
 
             return {
                 ...store,
                 score: correct ? store.score + 1 : store.score,
                 answered,
-                success: answered === store.total,
+                success,
                 questions: {
                     ...questions
                 }

@@ -1,5 +1,5 @@
 import { Container, DeckSwiper, View, Text } from 'native-base';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import Card from '../components/Card';
@@ -10,8 +10,7 @@ export default function QuizView({ navigation }) : React.ReactElement
     const dispatch = useDispatch();
 
     const quiz = useSelector(
-        store => store[QuizAction.Key],
-        shallowEqual
+        store => store[QuizAction.Key]
     );
 
     const questions = Object.values(quiz.questions);

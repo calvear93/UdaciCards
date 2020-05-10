@@ -34,7 +34,6 @@ export default function DeckReducer(store: any = DeckDefaults, action: AnyAction
             return {
                 ...store,
                 loading: false,
-                count: store.count + 1,
                 lastDeckId: id,
                 decks: {
                     ...decks,
@@ -68,7 +67,6 @@ export default function DeckReducer(store: any = DeckDefaults, action: AnyAction
 
             return {
                 ...store,
-                count: store.count - 1,
                 decks: {
                     ...decks
                 }

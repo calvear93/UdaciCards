@@ -1,5 +1,5 @@
 import { Button, Container, Text } from 'native-base';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { DeckAction, QuizAction } from '../store/actions';
