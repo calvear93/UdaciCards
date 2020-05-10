@@ -24,6 +24,7 @@ export default function QuizReducer(store: any = QuizDefaults, action: AnyAction
             return {
                 deckId: id,
                 title,
+                score: 0,
                 success: false,
                 date: new Date(),
                 total: Object.keys(questions).length,

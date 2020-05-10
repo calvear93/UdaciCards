@@ -18,7 +18,6 @@ export default function QuizView({ navigation }) : React.ReactElement
 
     function onAnswer(id: string, correct: boolean)
     {
-        console.log(id, correct);
         dispatch(QuizAction.Action(
             QuizAction.Type.ANSWER,
             { id, correct }
@@ -31,7 +30,10 @@ export default function QuizView({ navigation }) : React.ReactElement
                 <Text style={ styles.score }>{quiz.answered}/{quiz.total}</Text>
                 <Text style={ styles.title }>{quiz.title}</Text>
                 {questions.length === 0 ? (
-                    <Text style={ styles.success }>Well done! All cards answered!</Text>
+                    <>
+                        <Text style={ styles.success }>Well done! All cards answered!</Text>
+                        <Text style={ styles.final }>Accuracy: {(quiz.score / quiz.total) * 100}%</Text>
+                    </>
                 ) : (
                     <DeckSwiper
                         dataSource={ questions }
@@ -69,6 +71,12 @@ const styles = StyleSheet.create({
     score: {
         fontSize: 26,
         color: 'orange',
+        marginTop: 12,
+        textAlign: 'center'
+    },
+    final: {
+        fontSize: 26,
+        color: 'purple',
         marginTop: 12,
         textAlign: 'center'
     }
