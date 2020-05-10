@@ -4,3 +4,5 @@ export const InitDefaults = {
 };
 
 export const DeckDefaults = {};
+
+export const QuizDefaults = {};

@@ -1,16 +1,23 @@
 import { Container, DeckSwiper, View, Text } from 'native-base';
 import React from 'react';
+import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import Card from '../components/Card';
+import { QuizAction } from '../store/actions';
 
-export default function QuizView({ route: { params: { deck } }, navigation }) : React.ReactElement
+export default function QuizView({ navigation }) : React.ReactElement
 {
-    const questions = Object.values(deck.questions);
+    const quiz = useSelector(
+        store => store[QuizAction.Key],
+        shallowEqual
+    );
+
+    const questions = Object.values(quiz.questions);
 
     return (
         <Container>
             <View style={ styles.container }>
-                <Text style={ styles.title }>{deck.title}</Text>
+                <Text style={ styles.title }>{quiz.title}</Text>
                 <DeckSwiper
                     dataSource={ questions }
                     renderItem={ (question: any) =>

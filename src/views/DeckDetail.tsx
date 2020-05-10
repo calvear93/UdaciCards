@@ -1,11 +1,13 @@
 import { Button, Container, Text } from 'native-base';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { shallowEqual, useSelector } from 'react-redux';
-import { DeckAction } from '../store/actions';
+import { shallowEqual, useSelector, useDispatch } from 'react-redux';
+import { DeckAction, QuizAction } from '../store/actions';
 
 export default function DeckDetailView({ route: { params: { id } }, navigation }) : React.ReactElement
 {
+    const dispatch = useDispatch();
+
     const { decks: { [id]: deck } } = useSelector(
         store => store[DeckAction.Key],
         shallowEqual
@@ -18,7 +20,11 @@ export default function DeckDetailView({ route: { params: { id } }, navigation }
 
     function startQuiz()
     {
-        navigation.navigate('Quiz', { deck });
+        dispatch(QuizAction.Action(
+            QuizAction.Type.START,
+            { deck }
+        ));
+        navigation.navigate('Quiz');
     }
 
     return (
@@ -38,6 +44,7 @@ export default function DeckDetailView({ route: { params: { id } }, navigation }
             <Button
                 full
                 dark
+                disabled={ !deck.count }
                 onPress={ startQuiz }
                 style={ styles.button }
             >
