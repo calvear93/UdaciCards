@@ -31,16 +31,16 @@ export default function QuizView({ navigation }) : React.ReactElement
 
     function onAnswer(id: string, correct: boolean)
     {
-        dispatch(QuizAction.Action(
-            QuizAction.Type.ANSWER,
-            { id, correct }
-        ));
-
         // setLastAnswer(correct);
         if (correct)
             swiper?._root.swipeLeft();
         else
             swiper?._root.swipeRight();
+
+        dispatch(QuizAction.Action(
+            QuizAction.Type.ANSWER,
+            { id, correct }
+        ));
     }
 
     return (
