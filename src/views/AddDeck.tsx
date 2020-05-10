@@ -33,11 +33,6 @@ export default function AddDeckView({ navigation }) : React.ReactElement
         }
     }, [ loading, error ]);
 
-    function onChange(text: string)
-    {
-        setTitle(text);
-    }
-
     function onSubmit()
     {
         if (!title)
@@ -60,7 +55,7 @@ export default function AddDeckView({ navigation }) : React.ReactElement
                 <Text style={ styles.title }>Whats is the Title of your Deck?</Text>
                 <Item inlineLabel>
                     <Label>Enter the Deck title</Label>
-                    <Input onChangeText={ onChange } />
+                    <Input onChangeText={ setTitle } />
                 </Item>
                 <Button disabled={ loading } full onPress={ onSubmit }>
                     <Text>ADD DECK</Text>

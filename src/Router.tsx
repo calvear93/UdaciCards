@@ -7,6 +7,8 @@ import ErrorView from './views/Error';
 import MainView from './views/Main';
 import CardsView from './views/Cards';
 import AddDeckView from './views/AddDeck';
+import DeckDetailView from './views/DeckDetail';
+import AddCardView from './views/AddCard';
 import { createStackNavigator } from '@react-navigation/stack';
 
 /**
@@ -54,9 +56,19 @@ export default function Router() : React.ReactElement
                 options={ { title: 'Decks' } }
             />
             <Stack.Screen
+                name='DeckDetail'
+                component={ DeckDetailView }
+                options={ { title: 'Deck Detail' } }
+            />
+            <Stack.Screen
                 name='AddDeck'
                 component={ AddDeckView }
                 options={ { title: 'Add Deck' } }
+            />
+            <Stack.Screen
+                name='AddCard'
+                component={ AddCardView }
+                options={ { title: 'Add Card' } }
             />
             <Stack.Screen
                 name='Cards'

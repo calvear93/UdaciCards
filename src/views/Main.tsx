@@ -20,7 +20,7 @@ export default function MainView({ navigation }) : React.ReactElement
 
     function ViewCards(id)
     {
-        console.log(id);
+        navigation.navigate('DeckDetail', { id });
     }
 
     function ShowOptions(id, title)
@@ -43,7 +43,6 @@ export default function MainView({ navigation }) : React.ReactElement
 
     function DeleteDeck(id)
     {
-        console.log(id);
         dispatch(DeckAction.Action(
             DeckAction.Type.REMOVE_DECK,
             { id }
