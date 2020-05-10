@@ -7,7 +7,7 @@ import { QuizAction } from '../store/actions';
 
 export default function QuizView({ navigation }) : React.ReactElement
 {
-    const [ lastAnswer, setLastAnswer ] = useState<boolean | null>(null);
+    // const [ lastAnswer, setLastAnswer ] = useState<boolean | null>(null);
 
     let swiper: any;
     const dispatch = useDispatch();
@@ -18,16 +18,16 @@ export default function QuizView({ navigation }) : React.ReactElement
 
     const questions = Object.values(quiz.questions);
 
-    useEffect(() =>
-    {
-        if (lastAnswer === null)
-            return;
+    // useEffect(() =>
+    // {
+    //     if (lastAnswer === null)
+    //         return;
 
-        if (lastAnswer)
-            swiper?._root.swipeLeft();
-        else
-            swiper?._root.swipeRight();
-    }, [ lastAnswer ]);
+    //     if (lastAnswer)
+    //         swiper?._root.swipeLeft();
+    //     else
+    //         swiper?._root.swipeRight();
+    // }, [ lastAnswer ]);
 
     function onAnswer(id: string, correct: boolean)
     {
@@ -36,7 +36,11 @@ export default function QuizView({ navigation }) : React.ReactElement
             { id, correct }
         ));
 
-        setLastAnswer(correct);
+        // setLastAnswer(correct);
+        if (correct)
+            swiper?._root.swipeLeft();
+        else
+            swiper?._root.swipeRight();
     }
 
     return (
@@ -53,11 +57,11 @@ export default function QuizView({ navigation }) : React.ReactElement
                     <>
                         <DeckSwiper
                             ref={ (c) => swiper = c }
-                            dataSource={ questions }
+                            dataSource={ questions.filter(q => q) }
                             renderItem={ (question: any) =>
-                                (
+                                question ? (
                                     <Card key={ question.id } question={ question } onAnswer={ onAnswer } />
-                                )
+                                ) : (null)
                             }
                         />
 
