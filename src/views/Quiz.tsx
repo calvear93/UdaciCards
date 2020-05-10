@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../components/Card';
 import { QuizAction } from '../store/actions';
+import ScheduleNextNotification from '../services/Notify';
 
 export default function QuizView({ navigation }) : React.ReactElement
 {
@@ -28,6 +29,12 @@ export default function QuizView({ navigation }) : React.ReactElement
     //     else
     //         swiper?._root.swipeRight();
     // }, [ lastAnswer ]);
+
+    useEffect(() =>
+    {
+        if (quiz.success)
+            ScheduleNextNotification();
+    }, [ quiz.success ]);
 
     function onAnswer(id: string, correct: boolean)
     {
