@@ -5,7 +5,6 @@ import Loader from './components/Loader';
 import { InitAction } from './store/actions';
 import ErrorView from './views/Error';
 import MainView from './views/Main';
-import CardsView from './views/Cards';
 import AddDeckView from './views/AddDeck';
 import DeckDetailView from './views/DeckDetail';
 import AddCardView from './views/AddCard';
